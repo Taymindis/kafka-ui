@@ -91,7 +91,7 @@ ingress:
   path: "/"
 
   # The hostname for the Ingress
-  host: "lenses.cprv.com"
+  host: "tadika.kafka.com"
 
   # configs for Ingress TLS
   tls:
