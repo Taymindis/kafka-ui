@@ -24,7 +24,16 @@ existingConfigMap: ""
 existingSecret: ""
 envs:
   secret: {}
-  config: {}
+  config:
+    KAFKA_CLUSTERS_0_NAME: "sg-kafka"
+    KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka-sg-cp-kafka-0-svc:9092,kafka-sg-cp-kafka-1-svc:9092,kafka-sg-cp-kafka-2-svc:9092"
+    KAFKA_CLUSTERS_0_ZOOKEEPER: "kafka-sg-cp-zookeeper-0-svc:2181,kafka-sg-cp-zookeeper-1-svc:2181,kafka-sg-cp-zookeeper-2-svc:2181"
+    KAFKA_CLUSTERS_0_JMXPORT: "5555"
+    KAFKA_CLUSTERS_0_SCHEMAREGISTRY: "http://kafka-sg-cp-schema-registry:8081"
+    KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: "kafka-sg-connect"
+    KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: "http://kafka-sg-cp-kafka-connect:8083"
+    KAFKA_CLUSTERS_0_KSQLDBSERVER: "http://kafka-sg-cp-ksql-server:8088"
+
 
 networkPolicy:
   enabled: false
@@ -70,19 +79,19 @@ service:
 # Ingress configuration
 ingress:
   # Enable ingress resource
-  enabled: false
+  enabled: true
 
   # Annotations for the Ingress
   annotations: {}
 
   # ingressClassName for the Ingress
-  ingressClassName: ""
+  ingressClassName: "nginx"
 
   # The path for the Ingress
-  path: ""
+  path: "/"
 
   # The hostname for the Ingress
-  host: ""
+  host: "lenses.cprv.com"
 
   # configs for Ingress TLS
   tls:
